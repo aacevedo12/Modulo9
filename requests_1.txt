@@ -1,0 +1,14 @@
+import requests
+
+# Hacer una solicitud GET a la API de SWAPI
+response = requests.get("https://swapi.dev/api/planets/?search=arid")
+
+# Obtener los resultados como un objeto JSON
+results = response.json()
+
+# Contar el número de películas en las que aparecen planetas áridos
+num_films = 0
+for planet in results["results"]:
+    num_films += len(planet["films"])
+    
+print(f"En {num_films} películas aparecen planetas cuyo clima es árido.")

@@ -1,0 +1,17 @@
+import requests
+
+# Hacer una solicitud GET a la API de SWAPI para obtener información de todas las naves espaciales
+response = requests.get("https://swapi.dev/api/starships/")
+
+# Obtener los resultados como un objeto JSON
+results = response.json()
+
+# Encontrar la nave espacial más grande
+max_length = 0
+max_length_ship = ""
+for ship in results["results"]:
+    if ship["length"] and float(ship["length"]) > max_length:
+        max_length = float(ship["length"])
+        max_length_ship = ship["name"]
+        
+print(f"La aeronave más grande en toda la saga es la '{max_length_ship}', con una longitud de {max_length} metros.")

@@ -1,0 +1,16 @@
+import requests
+
+# Hacer una solicitud GET a la API de SWAPI para obtener información de la tercera película
+response = requests.get("https://swapi.dev/api/films/3/")
+
+# Obtener los resultados como un objeto JSON
+results = response.json()
+
+# Contar el número de personajes Wookie en la película
+num_wookies = 0
+for character_url in results["characters"]:
+    character = requests.get(character_url).json()
+    if "Wookiee" in character["species"]:
+        num_wookies += 1
+        
+print(f"Hay {num_wookies} Wookies en la sexta película.")
